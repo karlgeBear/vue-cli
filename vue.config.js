@@ -1,6 +1,8 @@
 // vue.config.js
 const path = require('path')
 module.exports = { // 只能写vue封装的配置
+  runtimeCompiler: true, //配置vue带编译器的版本
+  lintOnSave: false, // 关闭Eslint规则
   publicPath:"./", //用法和webpack本身的output.publickPath用法一致
 
   configureWebpack: { // 内部写webpack原生配置
