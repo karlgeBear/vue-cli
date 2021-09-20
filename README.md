@@ -1,4 +1,4 @@
-# vue-app3
+# vue-app4
 
 ## Project setup
 ```
