@@ -25,16 +25,18 @@ export default {
 
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  /* 定义变量 */
+ @import '~common/stylus/mixins.styl'
+
+  /*1. 定义变量 */
   $color = green
-  /* 定义混合 */
+  /*2. 定义混合 */
   btnStyle(w,h,bg)
     width w
     height h
     border none
     background-color bg
   
-  /* 定义一个函数 */
+  /*3. 定义一个函数 */
   add(a,b)
     a+b
 
@@ -53,6 +55,7 @@ export default {
   ul
     li
      line-height 50px
-    li.active 
-      color red
+     bottom-border-1px($color)
+     &.active  /* 4. 父级引用 &代表li */
+       color red
 </style>
