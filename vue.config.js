@@ -5,6 +5,7 @@ module.exports = { // 只能写vue封装的配置
   lintOnSave: false, // 关闭Eslint规则
   publicPath:"./", //用法和webpack本身的output.publickPath用法一致
 
+
   configureWebpack: { // 内部写webpack原生配置
     resolve: {
       /* 
@@ -13,9 +14,10 @@ module.exports = { // 只能写vue封装的配置
       */
       extensions: ['.js', '.vue', 'json'], //指定那些后缀的模块可以省略后缀
       alias: { //模块路径别名
-        '@': path.resolve(__dirname, 'src'),
+        //'@': path.resolve(__dirname, 'src'),
         //'vue$': 'vue/dist/vue.esm.js',  //表示精准匹配  带vue编译器
-        'components': path.resolve(__dirname, 'src/components')
+        'components': path.resolve(__dirname, 'src/components'),
+        'common':path.resolve('src/common')
       }
     }
   },
