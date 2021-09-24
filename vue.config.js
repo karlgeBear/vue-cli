@@ -1,11 +1,25 @@
 // vue.config.js
 const path = require('path')
+const px2rem = require('postcss-px2rem')
+// 配置postcs-px2rem ：自动帮我们换算px值为rem值
+const postcss = px2rem({
+  remUnit: 75   //设计稿等分之后的值，等分的比例页面rem的比例是一致的
+})  
+
 module.exports = { // 只能写vue封装的配置
   runtimeCompiler: true, //配置vue带编译器的版本
   lintOnSave: false, // 关闭Eslint规则
   publicPath:"./", //用法和webpack本身的output.publickPath用法一致
 
-
+  css: { // 添加postcss配置
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          postcss
+        ]
+      }
+    }
+  },
   configureWebpack: { // 内部写webpack原生配置
     resolve: {
       /* 
@@ -20,27 +34,6 @@ module.exports = { // 只能写vue封装的配置
         'common':path.resolve('src/common')
       }
     }
-  },
-
-  devServer: {
-    proxy: { // http://localhost:3000/api
-      //'/api': 'http://localhost:4000'    //==> http://localhost:4000/api/xxx
-      '/api': { //匹配处理以/api开头的请求
-        target: 'http://localhost:4000', //转发的目标地址
-        pathRewrite: {
-          '^/api': ''
-        }, //在转发请求前去除路径中/api  //htpp://localhost:4000/xxx
-        changeOrigin: true //支持跨域，如果协议/主机也不相同，必须加上
-      },
-
-      //可匹配多个服务器
-      '/3000': { //匹配处理以/3000开头的请求
-        target: 'http://localhost:3000', //转发的目标地址
-        pathRewrite: {
-          '^/api': ''
-        }, //在转发请求前去除路径中/3000  
-        changeOrigin: true //支持协议名的跨域
-      }
-    },
   }
+
 }
